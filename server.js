@@ -8,16 +8,22 @@ require('dotenv').config()
 const db = mongoose.connection;
 
 
+//controllers
+const taskController = require('./controllers/task.js')
+
+
+//Middleware
 const PORT = process.env.PORT || 3000;
 const MONGODB_URI = process.env.MONGODB_URI;
 const SECRET = process.env.SECRET
 mongoose.connect(MONGODB_URI);
 
-//Middleware
 
 
 
-// app.use('/sessions', sessionsController)
+
+app.use('/tasks', taskController)
+
 
 app.get('/' , (req, res) => {
   res.send('Hello World!');
